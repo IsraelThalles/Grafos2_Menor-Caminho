@@ -1,7 +1,7 @@
 import { TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Node({id, x, y}) {
+export default function Node({id, x, y, x1, setX1, setX2, setY1, setY2,}) {
     return (
         <TouchableOpacity
             key={id}
@@ -15,6 +15,17 @@ export default function Node({id, x, y}) {
                 alignItems: "center",
                 justifyContent: "center",
                 position: "absolute"
+            }}
+            onPress={(e) => {
+                console.log("x: " + x)
+                console.log("y: " + y)
+                if(x1 == null) {
+                    setX1(x)
+                    setY1(y)
+                } else {
+                    setX2(x)
+                    setY2(y)
+                }
             }}
         >
             <View

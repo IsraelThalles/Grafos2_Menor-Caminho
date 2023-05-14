@@ -1,11 +1,10 @@
 import { TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Node({id, x, y, key}) {
+export default function Node({id, x, y}) {
     return (
         <TouchableOpacity
-            key={key}
-            
+            key={id}
             style={{
                 backgroundColor: "gray",
                 top: y-20,

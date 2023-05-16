@@ -13,7 +13,8 @@
 Esse projeto é um aplicativo que calcula o menor caminho em um grafo direcionado usando o algoritmo de Dijkstra. 
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+<img src="https://github.com/IsraelThalles/Grafos2_Menor-Caminho/assets/73364666/9a0a98a7-2b4c-4fc7-981d-4780fb231b15" width="200">
+<img src="https://github.com/IsraelThalles/Grafos2_Menor-Caminho/assets/73364666/cdedb4d2-efcc-484a-bbce-3ab844709cae" width="200">
 
 ## Instalação 
 **Linguagem**: Javascript<br>

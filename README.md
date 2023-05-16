@@ -1,7 +1,7 @@
 
-# NomedoProjeto
+# Menor Caminho
 
-**Número da Lista**: X<br>
+**Número da Lista**: 52<br>
 **Conteúdo da Disciplina**: Grafos 2<br>
 
 ## Alunos
@@ -10,7 +10,7 @@
 | 19/0014776  |  Israel Thalles Dutra dos Santos |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+Esse projeto é um aplicativo que calcula o menor caminho em um grafo direcionado usando o algoritmo de Dijkstra. 
 
 ## Screenshots
 Adicione 3 ou mais screenshots do projeto em funcionamento.

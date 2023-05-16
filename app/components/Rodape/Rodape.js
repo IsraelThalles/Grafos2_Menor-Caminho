@@ -1,7 +1,8 @@
 import { View } from "react-native";
 import { IconButton, TextInput } from "react-native-paper";
+import Dijkstra from "../../services/Dijkstra";
 
-export default function Rodape({createNodes, setCreateNodes, createEdges, setCreateEdges, peso, setPeso, apagarGrafo}) {
+export default function Rodape({createNodes, setCreateNodes, createEdges, setCreateEdges, peso, setPeso, apagarGrafo, grafo, origem, destino}) {
 
     return (
         <View
@@ -49,6 +50,7 @@ export default function Rodape({createNodes, setCreateNodes, createEdges, setCre
                 iconColor="white"
                 size={40}
                 onPress={() => {
+                    Dijkstra(grafo, origem, destino)
                     console.log(peso)
                 }}
                 

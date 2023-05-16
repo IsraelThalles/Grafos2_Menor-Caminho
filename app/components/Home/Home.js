@@ -7,7 +7,6 @@ import Edge from "../Edge/Edge";
 
 export default function Home() {
     const [nodes, setNodes] = useState([])
-    const [edges, setEdges] = useState([])
     const [createNodes, setCreateNodes] = useState(false)
     const [createEdges, setCreateEdges] = useState(false)
     const [id, setId] = useState(0)
@@ -16,6 +15,9 @@ export default function Home() {
     const [y1, setY1] = useState(null)
     const [x2, setX2] = useState(null)
     const [y2, setY2] = useState(null)
+    const [origem, setOrigem] = useState(null)
+    const [destino, setDestino] = useState(null)
+    const [numArestas, setNumArestas] = useState(0)
 
     const addNode = (id, x, y) => {
         let newNode = {
@@ -24,27 +26,31 @@ export default function Home() {
             y: y,
             vizinhos: []
         }
-        
 
         setNodes(nodes => [...nodes, newNode])
     }
 
     const addEdge = (x1, x2, y1, y2, cor) => {
+        setNumArestas(numArestas+1)
+
         let newEdge = {
             x1: x1,
             y1: y1,
             x2: x2,
             y2: y2,
             cor: cor,
-            peso: peso
+            peso: peso == "" ? 1 : peso,
+            vizinho: destino
         }
-
-        setEdges(edge => [...edge, newEdge])
+        let no = [...nodes]
+        no[origem].vizinhos.push(newEdge)
 
         setX1(null)
         setX2(null)
         setY1(null)
         setY2(null)
+        setOrigem(null)
+        setDestino(null)
     }
 
     useEffect(() => {
@@ -66,19 +72,25 @@ export default function Home() {
             >
                 <View style={{flex: 1}}>
                     <Svg style={{position: "absolute"}}>
-                        {edges.length > 0 && edges.map((edge) => {
+                        {numArestas > 0 && nodes.map((node) => {
                             return (
-                                <Edge
-                                    x1={edge.x1}
-                                    y1={edge.y1}
-                                    x2={edge.x2}
-                                    y2={edge.y2}
-                                    cor={edge.cor}
-                                />
+                                <>
+                                    {numArestas > 0 && node.vizinhos.map((edge) => {
+                                        return(
+                                            <Edge
+                                                x1={edge.x1}
+                                                y1={edge.y1}
+                                                x2={edge.x2}
+                                                y2={edge.y2}
+                                                cor={edge.cor}
+                                            />
+                                        )
+                                    })}
+                                </>
                             )
                         })}
                     </Svg>
-
+                    
                     {nodes.length > 0 && nodes.map((node) => {
                         return (
                             <Node
@@ -90,6 +102,8 @@ export default function Home() {
                                 setY1={(pos) => setY1(pos)}
                                 setX2={(pos) => setX2(pos)}
                                 setY2={(pos) => setY2(pos)}
+                                setOrigem={(no) => setOrigem(no)}
+                                setDestino={(no) => setDestino(no)}
                             />
                         )
                     })}
@@ -100,15 +114,23 @@ export default function Home() {
 
             <Rodape
                 createNodes={createNodes}
-                setCreateNodes={(estado) => setCreateNodes(estado)}
+                setCreateNodes={(estado) => {
+                    setCreateNodes(estado)
+                    setX1(null)
+                    setX2(null)
+                    setY1(null)
+                    setY2(null)
+                }}
                 createEdges={createEdges}
                 setCreateEdges={(estado) => setCreateEdges(estado)}
                 peso={peso}
-                setPeso={(peso) => setPeso(peso)}
+                setPeso={(peso) => {
+                    setPeso(peso)
+                }}
                 apagarGrafo={() => {
                     setNodes([])
-                    setEdges([])
                     setId(0)
+                    setNumArestas(0)
                 }}
             />
         </>
